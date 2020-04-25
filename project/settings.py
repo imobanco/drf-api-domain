@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 from decouple import config
 
@@ -44,6 +45,7 @@ DEFAULT_APPS = [
 THIRD_PARTY_APPS = [
     "corsheaders",
     "rest_framework",
+    "rest_framework_simplejwt",
 ]
 
 LOCAL_APPS = [
@@ -158,6 +160,9 @@ DEFAULT_FROM_EMAIL = (
 TEST_EMAIL = config("TEST_EMAIL")
 
 
+TEST_RUNNER = "core.test_utils.MyTestSuiteRunner"
+
+
 # System logs
 LOG_PATH = os.path.join(BASE_DIR, "log/")
 if not os.path.exists("log/"):
@@ -230,7 +235,7 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "iauth.authentication.IncomeJWTAuthentication",
+        "core.authentication.JWTAuthentication",
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
     ],
@@ -241,3 +246,45 @@ REST_FRAMEWORK = {
         "rest_framework.filters.OrderingFilter",
     ],
 }
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "VERIFYING_KEY": None,
+    "AUDIENCE": None,
+    "ISSUER": None,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "user_id",
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
+    # @TODO fix auth cookie settings
+    "AUTH_COOKIE": "Authorization",
+    # A string like "example.com", or None for standard domain cookie.
+    "AUTH_COOKIE_DOMAIN": None,
+    # Whether the auth cookies should be secure (https:// only).
+    "AUTH_COOKIE_SECURE": False,
+    # The path of the auth cookie.
+    "AUTH_COOKIE_PATH": "/",
+    # Whether to set the flag restricting cookie leaks on cross-site requests.
+    # This can be 'Lax', 'Strict', or None to disable the flag.
+    "AUTH_COOKIE_SAMESITE": None,
+    "JTI_CLAIM": "jti",
+    "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
+    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
+    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
+}
+
+# @TODO fix csrf cookie settings
+CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_DOMAIN = None
+CSRF_COOKIE_PATH = "/"
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SAMESITE = None
+CSRF_COOKIE_SECURE = False
+CSRF_HEADER_NAME = "HTTP_X_CSRFTOKEN"
+CSRF_TRUSTED_ORIGINS = []
