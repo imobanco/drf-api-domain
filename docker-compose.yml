@@ -1,0 +1,37 @@
+version: "3.7"
+
+volumes:
+    pg_volume: {}
+    media_volume: {}
+    static_volume: {}
+    log_volume: {}
+
+services:
+    postgres:
+        image: postgres:11
+        container_name: postgres
+        volumes:
+            - pg_volume:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        env_file: .env
+
+    django:
+        build:
+            context: .
+            args:
+                USER_ID: ${USER_ID:-0}
+                GROUP_ID: ${GROUP_ID:-0}
+        container_name: django
+        depends_on:
+            - postgres
+        volumes:
+            - .:/app
+            - media_volume:/app/media/
+            - static_volume:/app/staticfiles/
+            - log_volume:/app/log/
+        command: python manage.py runserver 0.0.0.0:8000
+        entrypoint: /entrypoint.sh
+        ports:
+            - "8000:8000"
+        env_file: .env
