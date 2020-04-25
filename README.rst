@@ -31,9 +31,14 @@ to copy the file `.env.example` to `.env` and build docker containers
 
 Running the project
 ===================
-Simply run the command `$ make up` and *voilà*.
+Run the command
 
-This command will start 3 services on your machine:
+.. code-block::
+
+    make up
+
+
+This command will start 2 services on your machine:
 
 - Django server on `local server`_
 - PostgreSQL service on port 5432
