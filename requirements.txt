@@ -1,0 +1,13 @@
+# Bleeding edge Django
+django
+django-cors-headers
+
+# Bleeding edge Rest Framework
+coreapi
+djangorestframework
+
+# Env
+python-decouple==3.3
+
+# Database
+psycopg2-binary==2.8.4

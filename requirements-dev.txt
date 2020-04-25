@@ -1,0 +1,17 @@
+# Local development dependencies go here
+-r requirements.txt
+
+# Coverage
+# ------------------------------------------------
+coverage==5.0.3
+django-coverage-plugin==1.8.0
+
+# Tests
+# ------------------------------------------------
+factory_boy==2.12.0
+faker
+
+
+# CI
+# ------------------------------------------------
+black
