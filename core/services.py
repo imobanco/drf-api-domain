@@ -6,11 +6,20 @@ class ModelService:
         return cls.MODEL.objects.create(**kwargs)
 
     @classmethod
-    def update(cls, id, **kwargs):
+    def delete(cls, id):
+        instance = cls.retrieve(id)
+        instance.delete()
+        return instance
+
+    @classmethod
+    def update(cls, id, do_save=True, **kwargs):
         instance = cls.retrieve(id)
         for key, value in kwargs.items():
             setattr(instance, key, value)
-        instance.save()
+
+        if do_save:
+            instance.save()
+
         return instance
 
     @classmethod
