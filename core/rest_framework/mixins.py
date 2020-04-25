@@ -77,11 +77,13 @@ class RetrieveServiceMixin(RetrieveModelMixin):
 class UpdateServiceMixin(UpdateModelMixin):
     """
     Sobreescrevemos o update para chamar o método update do Serice, e não do serializer.
+
+    Não precisamos sobreescrever o partial_update, ele chama o update.
     """
 
     def update(self, request, *args, **kwargs):
         """
-        Verbo HTTP update
+        Verbo HTTP put
         """
         partial = kwargs.pop("partial", False)
         instance = self.get_object()
@@ -93,3 +95,9 @@ class UpdateServiceMixin(UpdateModelMixin):
         serializer = self.get_serializer(instance)
 
         return Response(serializer.data)
+
+    def partial_update(self, request, *args, **kwargs):
+        """
+        Verbo HTTP patch
+        """
+        return super().partial_update(request, *args, **kwargs)
