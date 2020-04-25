@@ -1,4 +1,4 @@
-from core.rest_framework.permissions import IsAuthenticated, IsOwnerOrAdmin
+from core.rest_framework.permissions import IsAuthenticatedOrCreate, IsOwnerOrAdmin
 from core.rest_framework.viewsets import ServiceViewSet
 
 from .serializers import UserSerializer
@@ -12,5 +12,5 @@ class UserViewSet(ServiceViewSet):
 
     service = UserService
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrAdmin]
+    permission_classes = [IsAuthenticatedOrCreate, IsOwnerOrAdmin]
     filter_fields = []
