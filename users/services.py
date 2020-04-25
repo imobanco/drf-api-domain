@@ -6,8 +6,15 @@ class UserService(ModelService):
     MODEL = User
 
     @classmethod
-    def create(cls, password=None, **kwargs):
+    def create(cls, password=None, **kwargs) -> User:
         user = User(**kwargs)
+        user.set_password(password)
+        user.save()
+        return user
+
+    @classmethod
+    def update(cls, id, password=None, **kwargs) -> User:
+        user = super().update(id, do_save=False, **kwargs)
         user.set_password(password)
         user.save()
         return user
