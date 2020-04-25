@@ -2,6 +2,7 @@
 .. _local server admin: http://localhost:8000/admin/
 .. _docker: https://docs.docker.com/install/
 .. _docker-compose: https://docs.docker.com/compose/install/
+.. _insomnia: https://insomnia.rest
 
 **************
 drf-api-domain
@@ -68,4 +69,4 @@ Using the API
 =============
 Access the `local server`_ and browse the api.
 
-You may interact with the API via browser or via http request softwares such as [Insomnia](#insomnia-setup)
+You may interact with the API via browser or via http request softwares such as `insomnia`_
