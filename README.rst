@@ -54,7 +54,15 @@ Administration
 ==============
 Django Admin Site is enabled for the project on `local server admin`_.
 
-The command `$ make populate.superuser` may be used to create the superuser `User(email='superuser@admin.com', password='@Admin123')`.
+.. code-block::
+
+    make populate.superuser
+
+may be used to create the superuser
+
+.. code-block::
+
+    User(email='superuser@admin.com', password='@Admin123')
 
 Using the API
 =============
