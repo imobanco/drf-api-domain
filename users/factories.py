@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from factory.faker import Faker
 
 from core.factories import BaseModelFactory
@@ -12,3 +13,4 @@ class UserFactory(BaseModelFactory):
     is_superuser = False
 
     email = Faker("safe_email")
+    password = make_password(None)
