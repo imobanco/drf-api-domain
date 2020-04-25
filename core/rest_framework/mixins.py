@@ -15,6 +15,9 @@ class CreateServiceMixin(CreateModelMixin):
     """
 
     def create(self, request, *args, **kwargs):
+        """
+        Verbo http create
+        """
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -33,6 +36,9 @@ class DestroyServiceMixin(DestroyModelMixin):
     """
 
     def destroy(self, request, *args, **kwargs):
+        """
+        Verbo HTTP delete
+        """
         instance = self.get_object()
 
         self.service.delete(instance.id)
@@ -47,6 +53,12 @@ class ListServiceMixin(ListModelMixin):
     É apenas de leitura.
     """
 
+    def list(self, request, *args, **kwargs):
+        """
+        Verbo HTTP list
+        """
+        return super().list(request, *args, **kwargs)
+
 
 class RetrieveServiceMixin(RetrieveModelMixin):
     """
@@ -55,6 +67,12 @@ class RetrieveServiceMixin(RetrieveModelMixin):
     É apenas de leitura.
     """
 
+    def retrieve(self, request, *args, **kwargs):
+        """
+        Verbo HTTP retrieve
+        """
+        return super().retrieve(request, *args, **kwargs)
+
 
 class UpdateServiceMixin(UpdateModelMixin):
     """
@@ -62,6 +80,9 @@ class UpdateServiceMixin(UpdateModelMixin):
     """
 
     def update(self, request, *args, **kwargs):
+        """
+        Verbo HTTP update
+        """
         partial = kwargs.pop("partial", False)
         instance = self.get_object()
 
