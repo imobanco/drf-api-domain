@@ -1,5 +1,7 @@
 .. _local server: http://localhost:8000/
 .. _local server admin: http://localhost:8000/admin/
+.. _docker: https://docs.docker.com/install/
+.. _docker-compose: https://docs.docker.com/compose/install/
 
 **************
 drf-api-domain
@@ -13,14 +15,18 @@ Install
 =======
 Docker + docker-compose
 -----------------------
-Install [docker-ce](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/) from each documentation
+Install `docker`_ and `docker-compose`_ from each documentation
 
 Setting up
 ==========
 On the project folder run the following commands:
 
-#. `$ make config.env` to copy the file `.env.example` to `.env`
-#. `$ make build` to build docker containers
+.. code-block::
+
+   make config.env
+   make build
+
+to copy the file `.env.example` to `.env` and build docker containers
 
 Running the project
 ===================
@@ -33,9 +39,16 @@ This command will start 3 services on your machine:
 
 Tests
 =====
-On the project folder:
-- run the command `$ make test` or `$ make test app=$(app_name)`. You may run the command `$ make coverage` instead.
-- run the command `$ make flake8`
+On the project folder
+
+.. code-block::
+
+    make test
+
+    make coverage
+
+    make black
+
 
 Administration
 ==============

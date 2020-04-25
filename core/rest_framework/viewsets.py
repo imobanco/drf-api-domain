@@ -15,6 +15,7 @@ class ServiceGenericViewSet(GenericViewSet):
 
     O :attr:`.service` substitui o :attr:`.queryset`.
     """
+
     nested_serializer_class = None
     service = None
 
@@ -40,7 +41,7 @@ class ServiceGenericViewSet(GenericViewSet):
         Returns:
             :class:`.QuerySet`
         """
-        if self.action == 'list':
+        if self.action == "list":
             """pode ser que o usuário queira restringir os objetos retornados na listagem"""
             return self.service.list_for_request(self.request)
         return self.service.list()

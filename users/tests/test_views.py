@@ -13,10 +13,7 @@ class UsersAPITestCase(BaseAPIJWTTestCase, ImageTestCaseMixin):
     def test_post(self):
         self.assertEqual(User.objects.count(), 0)
 
-        data = {
-            "email": "test@gmail.com",
-            "password": "test123"
-        }
+        data = {"email": "test@gmail.com", "password": "test123"}
 
         path = self.get_path()
 
@@ -199,6 +196,8 @@ class UsersAPITestCase(BaseAPIJWTTestCase, ImageTestCaseMixin):
         path = self.get_path(id_detail=user.id)
 
         response = self.client.delete(path, HTTP_AUTHORIZATION=self.auth)
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT, msg=response.data)
+        self.assertEqual(
+            response.status_code, status.HTTP_204_NO_CONTENT, msg=response.data
+        )
 
         self.assertEqual(User.objects.count(), 0)

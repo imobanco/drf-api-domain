@@ -24,7 +24,7 @@ from users.urls import urlpatterns as users
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include_docs_urls(title="Minha API de demostração"))
+    path("", include_docs_urls(title="Minha API de demostração")),
 ]
 
 
@@ -36,4 +36,3 @@ if settings.DEBUG:
 
     urlpatterns.append(path("__debug__", include(debug_urls)))
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
