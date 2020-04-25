@@ -2,9 +2,9 @@ version: "3.7"
 
 volumes:
     pg_volume: {}
-    media_volume: {}
-    static_volume: {}
-    log_volume: {}
+#    media_volume: {}
+#    static_volume: {}
+#    log_volume: {}
 
 services:
     postgres:
@@ -27,9 +27,9 @@ services:
             - postgres
         volumes:
             - .:/app
-            - media_volume:/app/media/
-            - static_volume:/app/staticfiles/
-            - log_volume:/app/log/
+#            - media_volume:/app/media/
+#            - static_volume:/app/staticfiles/
+#            - log_volume:/app/log/
         command: python manage.py runserver 0.0.0.0:8000
         entrypoint: /entrypoint.sh
         ports:

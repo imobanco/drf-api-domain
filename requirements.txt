@@ -1,18 +1,19 @@
 # Bleeding edge Django
 django
 django-cors-headers
+django-debug-toolbar
 
 # Bleeding edge Rest Framework
 coreapi
 djangorestframework
 git+https://github.com/NiyazNz/django-rest-framework-simplejwt@jwt_cookie
-django-url-filter==0.3.15
+django-url-filter
 
 # Env
-python-decouple==3.3
+python-decouple
 
 # Database
-psycopg2-binary==2.8.4
+psycopg2-binary
 
 # Images
-pillow==7.0.0
+pillow

@@ -44,12 +44,14 @@ DEFAULT_APPS = [
 
 THIRD_PARTY_APPS = [
     "corsheaders",
+    "debug_toolbar",
     "rest_framework",
     "rest_framework_simplejwt",
 ]
 
 LOCAL_APPS = [
-
+    'core',
+    'users',
 ]
 
 INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DEFAULT_APPS
@@ -160,6 +162,9 @@ DEFAULT_FROM_EMAIL = (
 TEST_EMAIL = config("TEST_EMAIL")
 
 
+AUTH_USER_MODEL = "users.User"
+
+
 TEST_RUNNER = "core.test_utils.MyTestSuiteRunner"
 
 
@@ -228,6 +233,9 @@ LOGGING = {
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = []
+
+
+INTERNAL_IPS = ["172.27.0.1", "127.0.0.1", "192.168.124.179", "localhost"]
 
 
 REST_FRAMEWORK = {
